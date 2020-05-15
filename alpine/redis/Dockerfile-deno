@@ -1,0 +1,18 @@
+FROM alpine:3.9
+
+ENV DEBIAN_FRONTEND=noninteractive 
+
+RUN apk update && \
+apk --update-cache add curl build-base gcc libc-dev linux-headers tzdata tcl
+
+ENV DENO_INSTALL="/root/.deno"
+
+RUN curl -fsSL https://deno.land/x/install/install.sh | DENO_INSTALL="/root/.deno" sh
+
+ENV PATH="${DENO_INSTALL}/bin:${PATH}"
+
+RUN echo $PATH
+
+RUN ls -lrt ${DENO_INSTALL}/bin
+
+RUN /root/.deno/bin/deno

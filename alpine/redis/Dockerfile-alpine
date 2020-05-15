@@ -1,0 +1,19 @@
+FROM alpine:3.9
+
+ENV DEBIAN_FRONTEND=noninteractive 
+
+RUN apk update && \
+apk --update-cache add build-base gcc libc-dev linux-headers tzdata tcl
+
+RUN mkdir -p /var/lib/redis /tmp 
+# && adduser -g -S --disabled-password --no-create-home redis redis
+
+WORKDIR /tmp
+
+RUN wget http://download.redis.io/redis-stable.tar.gz && \
+tar xzvf redis-stable.tar.gz
+
+WORKDIR /tmp/redis-stable
+
+RUN make
+RUN make test
