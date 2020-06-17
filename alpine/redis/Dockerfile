@@ -18,5 +18,5 @@ WORKDIR /tmp/redis-stable
 
 RUN echo `pwd`
 
-RUN make
-RUN make test
+RUN make install -j 3
+RUN make test -j 3

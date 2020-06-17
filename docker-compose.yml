@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+    opencv_python:
+        build:
+            args:
+                - username=${USER1}
+                - uid=${UID1}
+                - gid=${GID1}
+            context: .
+            dockerfile: opencv_base.Dockerfile
+        container_name: ocv-data-augmentation
+        image: ocv-data-augmentation
+        environment: 
+            DISPLAY: $DISPLAY
+            QT_X11_NO_MITSHM: 1
+        tty: true

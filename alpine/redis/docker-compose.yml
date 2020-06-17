@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  app:
+    image: trafex/alpine-nginx-php7
+    container_name: fronted2
+    ports:
+      - "80:8080"
+    environment:
+      - HOST_BACKEND=172.99.0.11
+      - PORT_BACKEND=4000
